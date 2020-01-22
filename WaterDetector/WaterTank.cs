@@ -18,7 +18,17 @@ namespace WaterDetector
 
         public int Capacity { get; }
         public string Name { get; }
-        public int CurrentValue { get { return _value; } }
+        
+        public int CurrentValue { 
+            get { return _value; } 
+            set {
+                _value = value;
+                ValueHasChanged?.Invoke(this, new EventArgs(value));
+            }
+        }
+
+        public event EventHandler ValueHasChanged;
+
         public void Reset()
         {
             _value = 0;
