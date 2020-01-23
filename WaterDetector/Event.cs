@@ -9,10 +9,12 @@ namespace WaterDetector
     public class EventArgs
     {
         public int Value { get; set; }
+        public int Max { get; set; }
 
-        public EventArgs(int value)
+        public EventArgs(int value, int max)
         {
             Value = value;
+            Max = max;
         }
     }
 }

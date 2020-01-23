@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace WaterDetector
 {
@@ -14,6 +15,13 @@ namespace WaterDetector
             WaterTank wt3 = new WaterTank(500, "WT3");
             WaterTank wt4 = new WaterTank(50, "WT4");
             WaterTank wt5 = new WaterTank(25, "WT5");
+            EventSubscriber sub = new EventSubscriber();
+            wt1.ValueHasChanged += sub.OnValueChanged;
+            wt2.ValueHasChanged += sub.OnValueChanged;
+            wt3.ValueHasChanged += sub.OnValueChanged;
+            wt4.ValueHasChanged += sub.OnValueChanged;
+            wt5.ValueHasChanged += sub.OnValueChanged;
+
             while (true)
             {
                 wt1.Add(r.Next(5));
@@ -21,7 +29,8 @@ namespace WaterDetector
                 wt3.Add(r.Next(5));
                 wt4.Add(r.Next(5));
                 wt5.Add(r.Next(5));
-                Thread.Sleep(1000);
+                ReadLine();
+                //Thread.Sleep(1000);
             }
         }
     }
